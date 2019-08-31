@@ -3,11 +3,16 @@ import numpy as np
 from beyesi_get_batch import *
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import cross_val_score
-batch_xs, batch_ys = get_batch_train()
-print('get data success')
-#clf = MultinomialNB().fit(batch_xs, batch_ys)
+
+
 clf = MultinomialNB()
 print('set up model')
-scores = cross_val_score(clf, batch_xs, batch_ys, cv=5)
-print(scores)
-print(scores.mean())
+
+flag=True
+while flag:
+    batch_xs, batch_ys,flag = get_batch_train(1000)
+    print('get data success')
+    #scores = cross_val_score(clf, batch_xs, batch_ys, cv=5)
+    #print(scores)
+    #print(scores.mean())
+    clf = MultinomialNB().partial_fit(batch_xs, batch_ys,classes=np.unique(batch_ys))
