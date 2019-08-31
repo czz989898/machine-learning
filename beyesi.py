@@ -16,3 +16,5 @@ while flag:
     #print(scores)
     #print(scores.mean())
     clf = MultinomialNB().partial_fit(batch_xs, batch_ys,classes=np.unique(batch_ys))
+with open(r'E:\home work\semester3\machine learning\assignment\data\config.txt','w', encoding='UTF-8') as config:
+    config.write(str(0))
