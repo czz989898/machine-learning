@@ -4,8 +4,8 @@ import nltk
 def normalize(type = 'test'):
     if type!='test':
         #print('train')
-        with open(r'E:\home work\semester3\machine learning\assignment\data\train_tweets.txt',encoding='UTF-8') as train_data:
-            with open(r'E:\home work\semester3\machine learning\assignment\data\feature_word_data.txt','w',encoding='UTF-8') as feature_word_data:
+        with open('train_tweets.txt',encoding='UTF-8') as train_data:
+            with open('feature_word_data.txt','w',encoding='UTF-8') as feature_word_data:
                 count = 0
                 for i in train_data:
 
@@ -31,9 +31,9 @@ def normalize(type = 'test'):
                     feature_word_data.write(words)
     else:
         #print('test')
-        with open(r'E:\home work\semester3\machine learning\assignment\data\test_tweets_unlabeled.txt',
+        with open('test_tweets_unlabeled.txt',
                   encoding='UTF-8') as train_data:
-            with open(r'E:\home work\semester3\machine learning\assignment\data\feature_word_unlabeled.txt', 'w',
+            with open('feature_word_unlabeled.txt', 'w',
                       encoding='UTF-8') as feature_word_data:
                 count = 0
                 for i in train_data:
@@ -60,7 +60,7 @@ def normalize(type = 'test'):
 def get_feature():
     words = {}
     count = 0
-    with open(r'E:\home work\semester3\machine learning\assignment\data\feature_word_data.txt', 'r',
+    with open('feature_word_data.txt', 'r',
               encoding='UTF-8') as feature_word_data:
         for i in feature_word_data:
             count+=1
@@ -75,7 +75,7 @@ def get_feature():
             except:
                 pass
     content = ' '.join(words)
-    with open(r'E:\home work\semester3\machine learning\assignment\data\features.txt', 'w',
+    with open('features.txt', 'w',
               encoding='UTF-8') as feature:
         feature.write(content)
 def get_batch(num):
@@ -85,14 +85,14 @@ def get_batch(num):
     fd = {}
     x_batch = []
     y_data = []
-    with open(r'E:\home work\semester3\machine learning\assignment\data\features.txt', 'r',
+    with open('features.txt', 'r',
               encoding='UTF-8') as feature:
         for i in feature:
             features = i.split()
-    with open(r'E:\home work\semester3\machine learning\assignment\data\config.txt',encoding='UTF-8') as config:
+    with open('config.txt',encoding='UTF-8') as config:
         for i in config:
             start = int(i)
-    with open(r'E:\home work\semester3\machine learning\assignment\data\feature_word_data.txt',encoding='UTF-8') as doc_source:
+    with open('feature_word_data.txt',encoding='UTF-8') as doc_source:
         count = -1
         for i in doc_source:
             count += 1
@@ -116,7 +116,7 @@ def get_batch(num):
                         fd[j]+=1
                 x_batch.append(list(fd.values()))
                 y_data.append(info[0])
-    with open(r'E:\home work\semester3\machine learning\assignment\data\config.txt','w', encoding='UTF-8') as config:
+    with open('config.txt','w', encoding='UTF-8') as config:
         config.write(str(start+num))
     return x_batch,y_data,flag
 def get_batch_test(num):
@@ -125,14 +125,14 @@ def get_batch_test(num):
     features = []
     fd = {}
     x_batch = []
-    with open(r'E:\home work\semester3\machine learning\assignment\data\features.txt', 'r',
+    with open('features.txt', 'r',
               encoding='UTF-8') as feature:
         for i in feature:
             features = i.split()
-    with open(r'E:\home work\semester3\machine learning\assignment\data\test_config.txt', encoding='UTF-8') as config:
+    with open('test_config.txt', encoding='UTF-8') as config:
         for i in config:
             start = int(i)
-    with open(r'E:\home work\semester3\machine learning\assignment\data\feature_word_unlabeled.txt',
+    with open('feature_word_unlabeled.txt',
               encoding='UTF-8') as doc_source:
         count = -1
         for i in doc_source:
@@ -159,17 +159,17 @@ def get_batch_test(num):
                         fd[j] += 1
                 x_batch.append(list(fd.values()))
 
-    with open(r'E:\home work\semester3\machine learning\assignment\data\test_config.txt', 'w', encoding='UTF-8') as config:
+    with open('test_config.txt', 'w', encoding='UTF-8') as config:
         config.write(str(start + num))
     return x_batch, flag
 def get_all_author():
-    with open(r'E:\home work\semester3\machine learning\assignment\data\train_tweets.txt',
+    with open('train_tweets.txt',
               encoding='UTF-8') as train_data:
         authors = set([])
         for i in train_data:
             authors.add(i.split('\t')[0])
         content = ' '.join(authors)
-        with open(r'E:\home work\semester3\machine learning\assignment\data\labels.txt','w',encoding='UTF-8') as labels:
+        with open('labels.txt','w',encoding='UTF-8') as labels:
             labels.write(content)
 #get_batch_train()
 #get_feature()
