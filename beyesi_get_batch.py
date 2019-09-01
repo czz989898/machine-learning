@@ -1,6 +1,3 @@
-from nltk.corpus import stopwords
-import nltk
-#nltk.download()
 def normalize(type = 'test'):
     if type!='test':
         #print('train')
