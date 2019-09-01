@@ -18,7 +18,7 @@ while flag:
     #print(scores)
     #print(scores.mean())
     clf = MultinomialNB().partial_fit(batch_xs, batch_ys,classes=np.unique(batch_ys))
-with open(r'E:\home work\semester3\machine learning\assignment\data\config.txt','w', encoding='UTF-8') as config:
+with open('config.txt','w', encoding='UTF-8') as config:
     config.write(str(0))
 result = []
 flag=True
@@ -27,24 +27,24 @@ print('train success')
 '''
 #bayes try#####################################################
 classes = ''
-with open(r'E:\home work\semester3\machine learning\assignment\data\labels.txt',encoding='UTF-8') as labels:
+with open('labels.txt',encoding='UTF-8') as labels:
     for i in labels:
         classes+=i
     classes = classes.split(' ')
 clf = MultinomialNB()
 print('set up model')
 batch_xs, batch_ys,flag = get_batch(1)
-with open(r'E:\home work\semester3\machine learning\assignment\data\config.txt','w', encoding='UTF-8') as config:
+with open('config.txt','w', encoding='UTF-8') as config:
     config.write(str(1))
 clf.partial_fit(batch_xs, batch_ys,classes=classes)
 batch_xs, batch_ys,flag = get_batch(1)
-with open(r'E:\home work\semester3\machine learning\assignment\data\config.txt','w', encoding='UTF-8') as config:
+with open('config.txt','w', encoding='UTF-8') as config:
     config.write(str(1))
 clf.partial_fit(batch_xs, batch_ys,classes=classes)
 #test accuracy#################################################
 print('test start')
 batch_xs, batch_ys,flag = get_batch(1)
-with open(r'E:\home work\semester3\machine learning\assignment\data\config.txt','w', encoding='UTF-8') as config:
+with open('config.txt','w', encoding='UTF-8') as config:
     config.write(str(0))
 y_pre = clf.predict(batch_xs)
 for i in range(0,len(y_pre)):
@@ -54,7 +54,7 @@ print(score)
 #get final result##############################################
 '''
 clf = joblib.load("train_model.m")
-with open(r'E:\home work\semester3\machine learning\assignment\data\result.txt','w', encoding='UTF-8') as result:
+with open('result.txt','w', encoding='UTF-8') as result:
     flag = True
     while flag:
         x_batch,flag=get_batch_test(1000)
